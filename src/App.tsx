@@ -1,4 +1,4 @@
-import { Button, colors, Stack } from '@mui/joy';
+import { Button, Stack } from '@mui/joy';
 import './css/App.css';
 import { PieChart } from '@mui/x-charts/PieChart';
 
@@ -218,7 +218,7 @@ function App() {
       });
   };
 
-  const handleAddQSubmit = (id: string[]) => {
+  const handleAddQSubmit = (_id: string[]) => {
     // fetch(`https://stockmanagers.onrender.com/api/stock/get`)
     //   .then((res) => res.json())
     //   .then(() => {
@@ -286,7 +286,7 @@ function App() {
             setName(data.find(x => x._id == id[0])?.name)
             setOpen4(true)
           }}
-          onAddProduct={async (id) => setOpen5(true)}
+          onAddProduct={async (_id) => setOpen5(true)}
           isShowTool={true}
         />
       </Stack>
