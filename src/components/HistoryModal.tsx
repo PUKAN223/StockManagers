@@ -1,11 +1,10 @@
-import * as React from 'react';
 import { Transition } from 'react-transition-group';
 import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import DialogTitle from '@mui/joy/DialogTitle';
 import DialogContent from '@mui/joy/DialogContent';
-import { Card, CardContent, Sheet, Stack, Table, Typography } from '@mui/joy';
+import { Sheet, Table } from '@mui/joy';
 interface HistoryProps {
     title: string
     open: boolean
