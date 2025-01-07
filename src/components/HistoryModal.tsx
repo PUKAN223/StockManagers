@@ -16,13 +16,13 @@ interface HistoryProps {
 
 export function HistoryModal(props: HistoryProps) {
     function reco(id: string, id1: string) {
-        fetch(`https://localhost:8080/api/history/get/${id}`)
+        fetch(`https://stockmanagers.onrender.com/api/history/get/${id}`)
             .then((res) => {
                 return res.json();
             })
             .then((history) => {
                 const data = history.find((x: { _id: string; }) => x._id == id1).oldData as any 
-                fetch(`https://localhost:8080/api/stock/edit/${data._id}/Edit`, {
+                fetch(`https://stockmanagers.onrender.com/api/stock/edit/${data._id}/Edit`, {
                     method: 'PUT',
                     body: JSON.stringify({ name: data.name, categories: data.categories, quantity: data.quantity, prices: data.prices, expiryDate: data.expiryDate }),
                     credentials: 'omit',
