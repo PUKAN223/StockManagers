@@ -84,7 +84,7 @@ function App() {
     const historyDataArray: any[] = [];
 
     Promise.all(id.map(d =>
-      fetch(`https://localhost:8080/api/history/get/${d}`)
+      fetch(`https://stockmanagers.onrender.com/api/history/get/${d}`)
         .then((res) => {
           if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
@@ -118,7 +118,7 @@ function App() {
     setNameOptions([])
     setCategoriesOptions([])
     setTimeout(() => {
-      fetch('https://localhost:8080/api/stock/get')
+      fetch('https://stockmanagers.onrender.com/api/stock/get')
         .then((res) => res.json() as Promise<StockData[]>)
         .then((data) => {
           if (data && (data as any).message !== "No stocks found") {
@@ -190,7 +190,7 @@ function App() {
   const handleDelete = (ids: string[]) => {
     ids.forEach(id => {
       console.log(id)
-      fetch(`https://localhost:8080/api/stock/remove/${id}`, {
+      fetch(`https://stockmanagers.onrender.com/api/stock/remove/${id}`, {
         method: 'DELETE',
         credentials: 'omit',
         headers: { 'Content-Type': 'application/json' },
@@ -204,7 +204,7 @@ function App() {
   }
 
   const handleAddSubmit = () => {
-    fetch('https://localhost:8080/api/stock/add', {
+    fetch('https://stockmanagers.onrender.com/api/stock/add', {
       method: 'POST',
       body: JSON.stringify({ name: formData.name, categories: formData.categories, quantity: formData.quantity, prices: formData.prices, expiryDate: formData.expiryDate }),
       credentials: 'omit',
@@ -219,7 +219,7 @@ function App() {
   };
 
   const handleAddQSubmit = (id: string[]) => {
-    // fetch(`https://localhost:8080/api/stock/get`)
+    // fetch(`https://stockmanagers.onrender.com/api/stock/get`)
     //   .then((res) => res.json())
     //   .then(() => {
     //     setOpe
@@ -227,7 +227,7 @@ function App() {
   };
   // Handle Edit Product
   const handleEditSubmit = () => {
-    fetch(`https://localhost:8080/api/stock/edit/${formData._id}/Edit`, {
+    fetch(`https://stockmanagers.onrender.com/api/stock/edit/${formData._id}/Edit`, {
       method: 'PUT',
       body: JSON.stringify({ name: formData.name, categories: formData.categories, quantity: formData.quantity, prices: formData.prices, expiryDate: formData.expiryDate }),
       credentials: 'omit',
@@ -362,7 +362,7 @@ function App() {
           const dataF = data.filter(x => x.name == ev.selectedName)
 
           getEx(amount, dataF).forEach(x => {
-            fetch(`https://localhost:8080/api/stock/edit/${x._id}/Export`, {
+            fetch(`https://stockmanagers.onrender.com/api/stock/edit/${x._id}/Export`, {
               method: 'PUT',
               body: JSON.stringify({ name: x.name, categories: x.categories, quantity: x.quantity, prices: x.prices, expiryDate: x.expiryDate }),
               credentials: 'omit',
