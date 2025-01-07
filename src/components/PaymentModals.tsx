@@ -7,7 +7,7 @@ import DialogTitle from '@mui/joy/DialogTitle';
 import DialogContent from '@mui/joy/DialogContent';
 import DialogActions from '@mui/joy/DialogActions';
 import Autocomplete from '@mui/joy/Autocomplete';
-import { FormLabel, Input, Stack } from '@mui/joy';
+import { Input, Stack } from '@mui/joy';
 import TableSortAndSelection, { HeadCell } from './Tables';
 
 const ProductHeader: HeadCell<{ name: string; categories: string; quantity: number; prices: number; expiryDate: string }>[] = [
@@ -88,7 +88,7 @@ const PaymentModalDialogWithForm: React.FC<FadeModalDialogWithFormProps> = ({
     const [updatedProducts, setUpdatedProducts] = React.useState<Product[]>([]); // Start with an empty array
 
     // Filter products by selected name
-    const handleNameChange = (event: any, value: string | null) => {
+    const handleNameChange = (_event: any, value: string | null) => {
         onSelecedName(value);
 
         // Reset updatedProducts when product name changes
@@ -105,25 +105,6 @@ const PaymentModalDialogWithForm: React.FC<FadeModalDialogWithFormProps> = ({
     const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = getMax(1, updatedProducts.reduce((total, product) => total + product.quantity, 0), parseInt(event.target.value));
         setQuantityInput(value);
-    };
-
-    // Update product quantities
-    const handleQuantityUpdate = () => {
-        if (!selectedName || quantityInput <= 0) return;
-
-        const newProducts = updatedProducts.map((product) => {
-            if (product.name === selectedName) {
-                if (product.quantity >= quantityInput) {
-                    return { ...product, quantity: product.quantity - quantityInput };
-                } else {
-                    // Handle the case where there is not enough quantity
-                    return { ...product, quantity: 0 };
-                }
-            }
-            return product;
-        });
-
-        setUpdatedProducts(newProducts);
     };
 
     // Submit form data
@@ -199,7 +180,7 @@ const PaymentModalDialogWithForm: React.FC<FadeModalDialogWithFormProps> = ({
                                                 selected={selected}
                                                 onSelected={async (id) => onSelected(id)}
                                                 isShowTool={false}
-                                                onAddProduct={async (id) => { }}
+                                                onAddProduct={async (_id) => { }}
                                                 onHistory={async () => { }}
                                             ></TableSortAndSelection>
                                         )}
